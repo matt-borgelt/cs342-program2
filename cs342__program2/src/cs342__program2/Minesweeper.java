@@ -1,5 +1,18 @@
 package cs342__program2;
 
-public class Minesweeper {
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.Color;
 
+import javax.swing.*;
+
+public class Minesweeper {
+	
+	public static void main(String args[]){
+		
+		ButtonTest application = new ButtonTest();
+		//application.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//application.setBackground(Color.BLUE);
+		
+	}
 }
