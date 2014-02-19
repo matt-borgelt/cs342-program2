@@ -14,19 +14,21 @@ public class ButtonTest extends JFrame{
 	
 	public ButtonTest(){
 		/* the title of the GUI */
-		super("Playing Minesweeper...");
+		//super();
 		/* window size */
 		//setSize(WIDTH, HEIGHT);
-		JFrame frame = new JFrame();
+		JFrame frame = new JFrame("Playing Minesweeper...");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); /* default is HIDE ON CLOSE */
-		getContentPane().setBackground(Color.BLUE);
+		//getContentPane().setBackground(Color.BLUE);
 		
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+		mainPanel.setBackground(Color.YELLOW);
 		
 		JPanel firstPanel = new JPanel();
 		firstPanel.setLayout(new GridLayout(10, 10));
 		firstPanel.setMaximumSize(new Dimension(300, 300));
+		firstPanel.setBackground(Color.RED);
 		JButton btn;
 		
 		
@@ -45,15 +47,24 @@ public class ButtonTest extends JFrame{
 		plainButton.addActionListener(handler)*/
 		Icon mine1 = new ImageIcon("mine.gif");
 		
+		/* what happens when one of 100 buttons is pressed */
+		ButtonHandler handler = new ButtonHandler();
+
+		/* TODO: 10? randomly chosen buttons will have a "mine" "under" them. */
 		int i, j;
+		/* create 10x10 grid */
 		for(i=0; i<10; i++){
 			for(j=0; j<10; j++){
+				
 				btn=new JButton(mine1);
 				btn.setPreferredSize(new Dimension(10, 10));
 				firstPanel.add(btn);
+				btn.addActionListener(handler);
+				/* if(random_condition)==true then place mine
+				 * else nothing */
+
 			}
 		}
-		
 		/*
 		JPanel secondPanel = new JPanel();
 	    secondPanel.setLayout(new GridLayout(5, 13));
@@ -78,8 +89,10 @@ public class ButtonTest extends JFrame{
 		frame.setVisible(true); /* for buttons */	
 	}
 	private class ButtonHandler implements ActionListener{
+		
 		public void actionPerformed(ActionEvent event){
 			JOptionPane.showMessageDialog(ButtonTest.this, "you pressed: " + event.getActionCommand());
+			/* if this button was one of the 10 chosen above that contains a mine... */
 		}
 	}
 }
