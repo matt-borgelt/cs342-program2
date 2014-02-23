@@ -1,5 +1,5 @@
 package cs342__program2;
-
+/* Matt Borgelt & Jeet Patel */
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.Color;
