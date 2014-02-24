@@ -49,11 +49,16 @@ public class ButtonTest extends JFrame{
 		for(i=0; i<99; i++){
 			button_ID_map[i] = 0;
 		}
+	
 		
 		Random rn = new Random();
 		int r;
-		for(i=0; i<99; i++){
+		for(i=0; i<10; i++){
 			r  = rn.nextInt(99); /* generate random number 0..99 */
+			//System.out.print(i);
+			//System.out.print("th random number is: ");
+			//System.out.print(r);
+			//System.out.println();
 			if(button_ID_map[r] == 1){
 				//collision! do again
 				i--;
@@ -64,6 +69,15 @@ public class ButtonTest extends JFrame{
 			
 		}
 		
+		/* print out the button ID bit vector (relevant bits only) */
+		for(i=0; i<99; i++){
+			if(button_ID_map[i]==1){
+				System.out.print(i);
+				System.out.print(": ");
+				System.out.println(button_ID_map[i]);
+			}
+
+		}
 		
 		
 		/* happens when one of 100 buttons is pressed */
@@ -88,7 +102,7 @@ public class ButtonTest extends JFrame{
 			}
 			
 		}
-		System.out.println( i);
+		//System.out.println( i);
 
 		
 	    mainPanel.add(firstPanel);
