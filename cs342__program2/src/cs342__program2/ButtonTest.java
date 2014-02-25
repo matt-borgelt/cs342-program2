@@ -85,6 +85,7 @@ public class ButtonTest extends JFrame{
 
 		/* TODO: Map btns to some sort of array to they can be referenced later */
 		
+		JButton[] button_array = new JButton[100];
 		int bc = 0;
 		
 		/* create 10x10 grid */
@@ -92,11 +93,8 @@ public class ButtonTest extends JFrame{
 			for(j=0; j<10; j++){
 				
 				btn=new JButton( tile);
+				button_array[bc] = btn;
 				
-				if(button_ID_map[bc] == 1){
-					btn.setIcon(mine);
-					
-				}
 				btn.setPreferredSize(new Dimension(10, 10));
 				firstPanel.add(btn);
 				btn.addActionListener(handler);
@@ -107,6 +105,12 @@ public class ButtonTest extends JFrame{
 		}
 		System.out.println( bc);
 
+		for(i=0; i<100; i++){
+			if(button_ID_map[i] == 1){
+					button_array[i].setIcon(mine);
+				
+			}
+		}
 		
 	    mainPanel.add(firstPanel);
 	    frame.setContentPane(mainPanel);
@@ -126,8 +130,12 @@ public class ButtonTest extends JFrame{
 			JOptionPane.showMessageDialog(ButtonTest.this, "you pressed: " + event.getActionCommand());
 			
 			
-			/* if this button was one of the 10 chosen above that contains a mine... */
-			//setVisible(false);
+			/* IF right click.... change icon to flag */
+			/* IF left click.... 
+			 *     clear empty buttons
+			 *     proximity detection
+			 * IF mine is left clicked... game is over
+			 */
 	
 		}
 		
