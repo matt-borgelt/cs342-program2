@@ -11,8 +11,8 @@ import java.util.Random;
 
 public class ButtonTest extends JFrame{
 	private JButton plainButton, fancyButton;
-	public static final int WIDTH = 200;
-	public static final int HEIGHT = 200;
+	public static final int WIDTH = 300;
+	public static final int HEIGHT = 300;
 	
 	public ButtonTest(){
 		/* the title of the GUI */
@@ -25,11 +25,11 @@ public class ButtonTest extends JFrame{
 		
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
-		mainPanel.setBackground(Color.YELLOW);
+		mainPanel.setBackground(Color.WHITE);
 		
 		JPanel firstPanel = new JPanel();
 		firstPanel.setLayout(new GridLayout(10, 10));
-		firstPanel.setMaximumSize(new Dimension(300, 300));
+		firstPanel.setMaximumSize(new Dimension(WIDTH, HEIGHT));
 		firstPanel.setBackground(Color.RED);
 		JButton btn;
 		
@@ -46,7 +46,7 @@ public class ButtonTest extends JFrame{
 		 */
 		int i, j;
 		int[] button_ID_map = new int[100];
-		for(i=0; i<99; i++){
+		for(i=0; i<100; i++){
 			button_ID_map[i] = 0;
 		}
 	
@@ -70,7 +70,7 @@ public class ButtonTest extends JFrame{
 		}
 		
 		/* print out the button ID bit vector (relevant bits only) */
-		for(i=0; i<99; i++){
+		for(i=0; i<100; i++){
 			if(button_ID_map[i]==1){
 				System.out.print(i);
 				System.out.print(": ");
@@ -83,34 +83,37 @@ public class ButtonTest extends JFrame{
 		/* happens when one of 100 buttons is pressed */
 		ButtonHandler handler = new ButtonHandler();
 
-		/* TODO: 10? randomly chosen buttons will have a "mine" "under" them. */
+		/* TODO: Map btns to some sort of array to they can be referenced later */
 		
-	
+		int bc = 0;
+		
 		/* create 10x10 grid */
 		for(i=0; i<10; i++){
 			for(j=0; j<10; j++){
 				
 				btn=new JButton( tile);
+				
+				if(button_ID_map[bc] == 1){
+					btn.setIcon(mine);
+					
+				}
 				btn.setPreferredSize(new Dimension(10, 10));
 				firstPanel.add(btn);
 				btn.addActionListener(handler);
-				
-				
-				/* if(random_condition)==true then place mine
-				 * else nothing */
+				bc++;
 
 			}
 			
 		}
-		//System.out.println( i);
+		System.out.println( bc);
 
 		
 	    mainPanel.add(firstPanel);
 	    frame.setContentPane(mainPanel);
 	    frame.setBackground(Color.BLUE);
 
-	    frame.setSize(300, 300);
-	    frame.setMinimumSize(new Dimension(300, 300));
+	    frame.setSize(WIDTH+60, HEIGHT+60);
+	    frame.setMinimumSize(new Dimension(WIDTH, HEIGHT));
 	    
 		
 		frame.setVisible(true); /* for buttons */	
@@ -119,10 +122,16 @@ public class ButtonTest extends JFrame{
 	private class ButtonHandler implements ActionListener{
 		
 		public void actionPerformed(ActionEvent event){
+			
 			JOptionPane.showMessageDialog(ButtonTest.this, "you pressed: " + event.getActionCommand());
+			
+			
 			/* if this button was one of the 10 chosen above that contains a mine... */
 			//setVisible(false);
 	
 		}
+		
 	}
+	
+	
 }
