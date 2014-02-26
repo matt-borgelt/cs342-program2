@@ -10,18 +10,18 @@ import java.util.Random;
 
 
 public class ButtonTest extends JFrame{
-	private JButton plainButton, fancyButton;
+	
 	public static final int WIDTH = 300;
 	public static final int HEIGHT = 300;
 	
 	public ButtonTest(){
-		/* the title of the GUI */
-		//super();
-		/* window size */
-		//setSize(WIDTH, HEIGHT);
+		
 		JFrame frame = new JFrame("Playing Minesweeper...");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); /* default is HIDE ON CLOSE */
-		//getContentPane().setBackground(Color.BLUE);
+		frame.setLayout( new GridLayout(10, 10));
+		
+		JButton[][] grid = new JButton[10][10];
+		Tile[][] tiles = new Tile[10][10];
 		
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
@@ -34,12 +34,13 @@ public class ButtonTest extends JFrame{
 		JButton btn;
 		
 		
-		Icon tile = new ImageIcon("tile.gif");
-		Icon mine = new ImageIcon("mine.gif");
-		Icon flag = new ImageIcon("flag.gif");
-		Icon tile1 = new ImageIcon("1.gif");
-		Icon tile2 = new ImageIcon("2.gif");
-		Icon tile3 = new ImageIcon("3.gif");
+		Icon tile = new ImageIcon( new ImageIcon("empty.png").getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH));
+		Icon mine = new ImageIcon( new ImageIcon("mine.png").getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH));
+		Icon flag = new ImageIcon( new ImageIcon("flag.png").getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH));
+		Icon tile1 = new ImageIcon(new ImageIcon("1.png").getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH));
+		Icon tile2 = new ImageIcon( new ImageIcon("2.png").getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH));
+		Icon tile3 = new ImageIcon( new ImageIcon("3.png").getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH));
+		Icon tile4 = new ImageIcon( new ImageIcon("4.png").getImage().getScaledInstance(35, 35, Image.SCALE_SMOOTH));
 		
 		/* BUTTON ID (0-100) maps to 2-D array which simulates the GUI. Sort of like a bit vector
 		 * randomly assigns 10 random numbers, 0-100. These are the mine locations.
@@ -55,10 +56,7 @@ public class ButtonTest extends JFrame{
 		int r;
 		for(i=0; i<10; i++){
 			r  = rn.nextInt(99); /* generate random number 0..99 */
-			//System.out.print(i);
-			//System.out.print("th random number is: ");
-			//System.out.print(r);
-			//System.out.println();
+			
 			if(button_ID_map[r] == 1){
 				//collision! do again
 				i--;
