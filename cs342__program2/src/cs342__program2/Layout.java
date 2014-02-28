@@ -36,6 +36,8 @@ public class Layout extends JFrame{
 	        
 	        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	        frame.setSize(400,400);
+		    frame.setMinimumSize(new Dimension(400, 400));
+		    //frame.setMaximumSize(new Dimension(400, 400));
 	        frame.setVisible(true);
 	        
 	        /* representation of grid */
@@ -92,26 +94,19 @@ public class Layout extends JFrame{
 	    private final Icon mine = new ImageIcon( (new ImageIcon("mine.png").getImage().getScaledInstance(35,35,Image.SCALE_SMOOTH)));
 	    private final Icon empty = new ImageIcon( (new ImageIcon("empty.png").getImage().getScaledInstance(35,35,Image.SCALE_SMOOTH)));
 
-	    private int mouse_arg = 0;
 	    
 	    private class MouseClickHandler extends MouseAdapter {
 
 	        // handle mouse click event and determine which button was pressed
 	        public void mouseClicked( MouseEvent event )
-	        {
-
-	           /* Right mouse click */
-	           if ( event.isMetaDown() ) {
-	        	   JOptionPane.showMessageDialog(Layout.this, "Rmouse");
-	        	   mouse_arg = 1;
-	           }
-	           else if (event.isAltDown()){
-	        	   ;
-	           }
-	           /* left mouse click */
-	           else {
+	        {  
+	           if (event.getButton()==MouseEvent.BUTTON1){
 	        	   JOptionPane.showMessageDialog(Layout.this, "Lmouse");
-	        	   mouse_arg=0;
+	        	   	
+	           }
+	           if (event.getButton()==MouseEvent.BUTTON3){
+	        	   JOptionPane.showMessageDialog(Layout.this, "Rmouse");
+	        	   //grid[0][0].setIcon(flag);
 	           }
 	        }
 	     }
